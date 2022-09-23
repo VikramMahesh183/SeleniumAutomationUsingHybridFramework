@@ -3,11 +3,11 @@ package com.seleniumAutomation.pageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import com.seleniumAutomation.actionDriver.Action;
+import com.seleniumAutomation.actionDriver.ActionImpl;
 import com.seleniumAutomation.base.BaseClass;
 
 public class HomePage extends BaseClass {
+	ActionImpl action = new ActionImpl();
 	
 	@FindBy(xpath="//span[text()='My wishlists']")
 	private WebElement myWishList;
@@ -21,11 +21,11 @@ public class HomePage extends BaseClass {
 
 	
 	public boolean validateMyWishList() throws Throwable {
-		return Action.isDisplayed(getDriver(), myWishList);
+		return action.isDisplayed(getDriver(), myWishList);
 	}
 	
 	public boolean validateOrderHistory() throws Throwable {
-		return Action.isDisplayed(getDriver(), orderHistory);
+		return action.isDisplayed(getDriver(), orderHistory);
 	}
 	
 	public String getCurrURL() throws Throwable {

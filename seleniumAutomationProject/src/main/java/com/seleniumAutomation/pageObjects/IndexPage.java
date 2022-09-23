@@ -1,14 +1,13 @@
 package com.seleniumAutomation.pageObjects;
 
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import com.seleniumAutomation.actionDriver.Action;
+import com.seleniumAutomation.actionDriver.ActionImpl;
 import com.seleniumAutomation.base.BaseClass;
 
 public class IndexPage extends BaseClass {
+	ActionImpl action = new ActionImpl();
 
 	@FindBy(xpath = "//a[@class='login']")
 	private WebElement signInBtn;
@@ -29,13 +28,13 @@ public class IndexPage extends BaseClass {
 	}
 
 	public LoginPage clickOnSignIn() throws Throwable {
-		Action.fluentWait(getDriver(), signInBtn, 10);
-		Action.click(getDriver(), signInBtn);
+		action.fluentWait(getDriver(), signInBtn, 10);
+		action.click(getDriver(), signInBtn);
 		return new LoginPage();
 	}
 
 	public boolean validateLogo() throws Throwable {
-		return Action.isDisplayed(getDriver(), myStoreLogo);
+		return action.isDisplayed(getDriver(), myStoreLogo);
 	}
 
 	public String getMyStoreTitle() {
@@ -44,9 +43,9 @@ public class IndexPage extends BaseClass {
 	}
 
 	public SearchResultPage searchProduct(String productName) throws Throwable {
-		Action.type(searchProductBox, productName);
-		Action.scrollByVisibilityOfElement(getDriver(), searchButton);
-		Action.click(getDriver(), searchButton);
+		action.type(searchProductBox, productName);
+		action.scrollByVisibilityOfElement(getDriver(), searchButton);
+		action.click(getDriver(), searchButton);
 		return new SearchResultPage();
 	}
 

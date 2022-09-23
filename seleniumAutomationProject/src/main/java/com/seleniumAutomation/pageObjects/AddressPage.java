@@ -1,14 +1,13 @@
 package com.seleniumAutomation.pageObjects;
 
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import com.seleniumAutomation.actionDriver.Action;
+import com.seleniumAutomation.actionDriver.ActionImpl;
 import com.seleniumAutomation.base.BaseClass;
 
 public class AddressPage extends BaseClass {
+	ActionImpl action = new ActionImpl();
 	
 	@FindBy(xpath="//span[text()='Proceed to checkout']")
 	private WebElement proceedToCheckOut;
@@ -18,7 +17,7 @@ public class AddressPage extends BaseClass {
 	}
 
 	public ShippingPage clickOnCheckOut() throws Throwable {
-		Action.click(getDriver(), proceedToCheckOut);
+		action.click(getDriver(), proceedToCheckOut);
 		return new ShippingPage();
 	}
 	
